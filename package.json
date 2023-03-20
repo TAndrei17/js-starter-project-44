@@ -1,0 +1,19 @@
+{
+  "name": "@hexlet/code",
+  "version": "1.0.0",
+  "description": "Project 1",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TAndrei17/js-starter-project-44.git"
+  },
+  "author": "Andrei Trunkin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TAndrei17/js-starter-project-44/issues"
+  },
+  "homepage": "https://github.com/TAndrei17/js-starter-project-44#readme"
+}
