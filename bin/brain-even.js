@@ -1,49 +1,57 @@
 import readlineSync from 'readline-sync';
 
-const nums = {
-  current: '',
-  right: [],
-  wrong: [],
-};
+const game = () => {
+  const nums = {
+    current: '',
+    right: 0,
+    wrong: 0,
+  };
 
-const dialogs = {
-  rule: 'Answer "yes" if the number is even, otherwise answer "no".',
-  yesWrong: "'yes' is wrong answer ;(. Correct answer was 'no'.",
-  noWrong: "'no' is wrong answer ;(. Correct answer was 'yes'.",
-  incorrect: "Let's try again",
-  correct: 'Correct!',
-  congrats: 'Congragulations',
-};
+  const dialogs = {
+    rule: 'Answer "yes" if the number is even, otherwise answer "no".',
+    yesWrong: "'yes' is wrong answer ;(. Correct answer was 'no'.",
+    noWrong: "'no' is wrong answer ;(. Correct answer was 'yes'.",
+    incorrect: "Let's try again",
+    correct: 'Correct!',
+    congrats: 'Congragulations',
+  };
 
-const getNumber = () => {
-  const maxNumber = 100;
-  const number = Math.floor(Math.random() * maxNumber);
-  nums.current = number;
-  return number;
-};
-
-const brainEven = (name) => {
-  // i need 'rule' only once
   console.log(dialogs.rule);
 
-  // function getNumber is indeterminate!
-  // receive number and save it to 'nums' (state)
-  getNumber();
-  // answer a player
-  const askNumber = () => `Question: ${nums.current}`;
-  console.log(askNumber());
-  // answer to me
-  const playerAnswer = readlineSync.question('Your answer: ');
+  const getNumber = () => {
+    const maxNumber = 100;
+    const number = Math.floor(Math.random() * maxNumber);
+    nums.current = number;
+    return number;
+  };
 
-  // in 'tic-tac-toe' a player moved game by click; how should it work in node?
-  // player's answer is a event, answer should call function again?
+  const checkNumber = () => {
+    getNumber();
+    const askNumber = () => `Question: ${nums.current}`;
+    console.log(askNumber());
+    const playerAnswer = readlineSync.question('Your answer: ');
+    return playerAnswer;
+  };
 
-  // final
-  if (nums.wrong.length > 0) {
-    console.log(dialogs.incorrect);
-  }
+  const render = (answer, even = true) => {
+    if (answer === 'yes') {
+      const result = (even) ? console.log(dialogs.correct) : console.log(dialogs.yesWrong);
+      return (result === true) ? checkNumber() : dialogs.incorrect;
+    }
+    if (answer === 'no') {
+      const result = (even) ? console.log(dialogs.correct) : console.log(dialogs.noWrong);
+      return (result === true) ? checkNumber() : dialogs.incorrect;
+    }
+  };
 
-  if (nums.right.length === 3) {
-    console.log(`${dialogs.congrats} ${name}!`);
-  }
+  /* const brainEven = (name) => {
+    const answer = checkNumber();
+    const isEven = nums.current % 2;
+    if ((answer === 'yes' && isEven) || (answer === 'no' && !isEven)) {
+      nums.right += 1;
+    } else {
+      nums.wrong += 1;
+    }
+    render(answer, isEven);
+  }; */
 };
