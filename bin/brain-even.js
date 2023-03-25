@@ -3,40 +3,35 @@ import readlineSync from 'readline-sync';
 const game = (name) => {
   const state = {
     currentNum: null,
-    even: null,
+    rightAnswer: '',
     answer: '',
     right: 0,
     wrong: 0,
   };
 
   const dialogs = {
-    rule: 'Answer "yes" if the number is even, otherwise answer "no".',
-    yesWrong: "'yes' is wrong answer ;(. Correct answer was 'no'.",
-    noWrong: "'no' is wrong answer ;(. Correct answer was 'yes'.",
+    answerWrong: '',
     incorrect: `Let's try again, ${name}!`,
     correct: 'Correct!',
     congrats: `Congragulations, ${name}!`,
   };
 
   const getNumber = () => {
-    const maxNumber = 250;
+    const maxNumber = 1000;
     const number = Math.floor(Math.random() * maxNumber);
     state.currentNum = number;
-    state.even = (number % 2 === 0);
+    state.rightAnswer = (number % 2 === 0) ? 'yes' : 'no';
     const askNumber = () => `Question: ${state.currentNum}`;
     console.log(askNumber());
     const playerAnswer = readlineSync.question('Your answer: ');
     state.answer = playerAnswer;
+    dialogs.answerWrong = `'${state.answer}' is wrong answer ;(. Correct answer was '${state.rightAnswer}'.`;
   };
 
-  const render = (answer, even) => {
+  const render = () => {
     let result = '';
-    if ((answer === 'yes' && even) || (answer === 'no' && !even)) {
-      result = dialogs.correct;
-    } else if (answer === 'yes' && !even) {
-      result = dialogs.yesWrong;
-    } else if (answer === 'no' && even) {
-      result = dialogs.noWrong;
+    if (state.answer === 'yes' || state.answer === 'no') {
+      result = (state.answer === state.rightAnswer) ? dialogs.correct : dialogs.answerWrong;
     } else {
       result = dialogs.incorrect;
     }
@@ -47,10 +42,9 @@ const game = (name) => {
     state.wrong = (result !== dialogs.correct) ? state.wrong += 1 : state.wrong;
   };
 
-  console.log(dialogs.rule);
   const brainEven = () => {
     getNumber();
-    render(state.answer, state.even);
+    render();
 
     if (state.right < 3 && state.wrong === 0) {
       return brainEven();
