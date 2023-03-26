@@ -1,4 +1,11 @@
-import readlineSync from 'readline-sync';
+#!/usr/bin/env node
+
+import greeting from '../cli.js';
+import { createNumber, showNumber, getAnswer } from '../process.js';
+
+console.log('Welcome to the Brain Games!');
+const getName = greeting();
+console.log('Answer "yes" if the number is even, otherwise answer "no".');
 
 const game = (name) => {
   const state = {
@@ -16,18 +23,6 @@ const game = (name) => {
     congrats: `Congragulations, ${name}!`,
   };
 
-  const getNumber = () => {
-    const maxNumber = 1000;
-    const number = Math.floor(Math.random() * maxNumber);
-    state.currentNum = number;
-    state.rightAnswer = (number % 2 === 0) ? 'yes' : 'no';
-    const askNumber = () => `Question: ${state.currentNum}`;
-    console.log(askNumber());
-    const playerAnswer = readlineSync.question('Your answer: ');
-    state.answer = playerAnswer;
-    dialogs.answerWrong = `'${state.answer}' is wrong answer ;(. Correct answer was '${state.rightAnswer}'.`;
-  };
-
   const render = () => {
     let result = '';
     if (state.answer === 'yes' || state.answer === 'no') {
@@ -43,8 +38,14 @@ const game = (name) => {
   };
 
   const brainEven = () => {
-    getNumber();
-    render();
+    const number = createNumber();
+    state.currentNum = number;
+    state.rightAnswer = (number % 2 === 0) ? 'yes' : 'no';
+    showNumber(number);
+    const answer = getAnswer();
+    state.answer = answer;
+    dialogs.answerWrong = `'${state.answer}' is wrong answer ;(. Correct answer was '${state.rightAnswer}'.`;
+    const result = render();
 
     if (state.right < 3 && state.wrong === 0) {
       return brainEven();
@@ -53,8 +54,9 @@ const game = (name) => {
     } else if (state.wrong > 0) {
       console.log(dialogs.incorrect);
     }
+    return result;
   };
   return brainEven();
 };
 
-export default game;
+game(getName);
