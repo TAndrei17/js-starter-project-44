@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import greeting from '../cli.js';
-import { createNumber, showNumber, getAnswer } from '../process.js';
+import { createNumber, showNumber, getAnswer } from '../index.js';
 
 console.log('Welcome to the Brain Games!');
 const getName = greeting();
