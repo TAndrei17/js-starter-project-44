@@ -4,6 +4,6 @@
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/d230cbd47d78747795c2/maintainability)](https://codeclimate.com/github/TAndrei17/js-starter-project-44/maintainability)
 
-[![Brain-Even](https://asciinema.org/a/vbqjmaDDpPdufI5dX1ChbOmeQ.svg)](https://asciinema.org/a/vbqjmaDDpPdufI5dX1ChbOmeQ)
+[![Brain-Even](https://asciinema.org/a/ki5bTSguoIu4gg6iRe8xJm2Jx.svg)](https://asciinema.org/a/ki5bTSguoIu4gg6iRe8xJm2Jx)
 
 [![Brain-Calc](https://asciinema.org/a/Ui9qEZDcl8Katozd4WOX3bdtP.svg)](https://asciinema.org/a/Ui9qEZDcl8Katozd4WOX3bdtP)
