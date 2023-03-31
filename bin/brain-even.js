@@ -8,15 +8,15 @@ console.log('Welcome to the Brain Games!');
 const getName = greeting();
 console.log('Answer "yes" if the number is even, otherwise answer "no".');
 
-const gameEven = (name) => {
-  const stateEven = {
-    currentNum: null,
-    rightAnswer: '',
-    answer: '',
-    right: 0,
-    wrong: 0,
-  };
+const stateEven = {
+  currentNum: null,
+  rightAnswer: '',
+  answer: '',
+  right: 0,
+  wrong: 0,
+};
 
+const gameEven = (name) => {
   const dialogsEven = {
     answerWrong: '',
     incorrect: `Let's try again, ${name}!`,
@@ -27,15 +27,9 @@ const gameEven = (name) => {
   const render = () => {
     let result = '';
     const { answer, rightAnswer } = stateEven;
-    const { correct, answerWrong, incorrect } = dialogsEven;
-    if (answer === 'yes' || answer === 'no') {
-      result = (answer === rightAnswer) ? correct : answerWrong;
-    } else {
-      result = incorrect;
-    }
-    if (result !== incorrect) {
-      console.log(result);
-    }
+    const { correct, answerWrong } = dialogsEven;
+    result = (answer === rightAnswer) ? correct : answerWrong;
+    console.log(result);
     const { right, wrong } = stateEven;
     stateEven.right = (result === correct) ? stateEven.right += 1 : right;
     stateEven.wrong = (result !== correct) ? stateEven.wrong += 1 : wrong;

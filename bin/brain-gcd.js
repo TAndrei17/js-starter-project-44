@@ -8,16 +8,16 @@ console.log('Welcome to the Brain Games!');
 const getName = greeting();
 console.log('Find the greatest common divisor of given numbers.');
 
-const gameNod = (name) => {
-  const stateNod = {
-    currentTerm: '',
-    rightAnswer: null,
-    answer: null,
-    right: 0,
-    wrong: 0,
-  };
+const stateGcd = {
+  currentTerm: '',
+  rightAnswer: null,
+  answer: null,
+  right: 0,
+  wrong: 0,
+};
 
-  const dialogsNod = {
+const gameGcd = (name) => {
+  const dialogsGcd = {
     answerWrong: '',
     incorrect: `Let's try again, ${name}!`,
     correct: 'Correct!',
@@ -28,32 +28,32 @@ const gameNod = (name) => {
     let result = '';
     const {
       rightAnswer, answer, right, wrong,
-    } = stateNod;
-    const { correct, answerWrong } = dialogsNod;
+    } = stateGcd;
+    const { correct, answerWrong } = dialogsGcd;
     result = (answer === rightAnswer) ? correct : answerWrong;
     console.log(result);
-    stateNod.right = (result === correct) ? stateNod.right += 1 : right;
-    stateNod.wrong = (result === answerWrong) ? stateNod.wrong += 1 : wrong;
+    stateGcd.right = (result === correct) ? stateGcd.right += 1 : right;
+    stateGcd.wrong = (result === answerWrong) ? stateGcd.wrong += 1 : wrong;
   };
 
   const brainGcd = () => {
     const term = createTwoNums();
-    stateNod.currentTerm = term;
-    stateNod.rightAnswer = getNod(term);
+    stateGcd.currentTerm = term;
+    stateGcd.rightAnswer = getNod(term);
     showTwoNumbers(term);
     const answer = getAnswer();
-    stateNod.answer = Number(answer);
-    dialogsNod.answerWrong = `'${stateNod.answer}' is wrong answer ;(. Correct answer was '${stateNod.rightAnswer}'.`;
+    stateGcd.answer = Number(answer);
+    dialogsGcd.answerWrong = `'${stateGcd.answer}' is wrong answer ;(. Correct answer was '${stateGcd.rightAnswer}'.`;
     render();
 
-    if (stateNod.right < 3 && stateNod.wrong === 0) {
+    if (stateGcd.right < 3 && stateGcd.wrong === 0) {
       return brainGcd();
     }
-    const { right, wrong } = stateNod;
-    const { congrats, incorrect } = dialogsNod;
+    const { right, wrong } = stateGcd;
+    const { congrats, incorrect } = dialogsGcd;
     return conclusion(right, wrong, congrats, incorrect);
   };
   return brainGcd();
 };
 
-gameNod(getName);
+gameGcd(getName);

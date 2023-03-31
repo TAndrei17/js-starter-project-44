@@ -8,15 +8,15 @@ console.log('Welcome to the Brain Games!');
 const getName = greeting();
 console.log('What is the result of the expression?');
 
-const gameCalc = (name) => {
-  const state = {
-    currentTerm: '',
-    rightAnswer: null,
-    answer: null,
-    right: 0,
-    wrong: 0,
-  };
+const state = {
+  currentTerm: '',
+  rightAnswer: null,
+  answer: null,
+  right: 0,
+  wrong: 0,
+};
 
+const gameCalc = (name) => {
   const dialogs = {
     answerWrong: '',
     incorrect: `Let's try again, ${name}!`,
