@@ -1,7 +1,7 @@
 import readlineSync from 'readline-sync';
 
 const createNumber = () => {
-  const maxNumber = 100;
+  const maxNumber = 10;
   const number = Math.floor(Math.random() * maxNumber);
   return number;
 };
