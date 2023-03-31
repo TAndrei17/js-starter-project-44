@@ -6,35 +6,21 @@ const createNumber = () => {
   return number;
 };
 
-const showNumber = (number) => {
-  const question = `Question: ${number}`;
-  console.log(question);
-};
-
-const createExpression = () => {
-  const operators = ['+', '-', '*'];
-  const expression = { num1: 0, num2: 0, operator: '' };
-  expression.num1 = createNumber();
-  expression.num2 = createNumber();
-  expression.operator = operators[Math.floor(Math.random() * operators.length)];
-  const showExpression = `${expression.num1} ${expression.operator} ${expression.num2}`;
-  return showExpression;
-};
-
-const showExpression = (text) => {
-  const question = `Question: ${text}`;
-  console.log(question);
-};
-
 const getAnswer = () => {
   const answer = readlineSync.question('Your answer: ');
   return answer;
 };
 
+const conclusion = (num1, num2, text1, text2) => {
+  if (num1 === 3 && num2 === 0) {
+    console.log(text1);
+  } else if (num2 > 0) {
+    console.log(text2);
+  }
+};
+
 export {
   createNumber,
-  showNumber,
   getAnswer,
-  createExpression,
-  showExpression,
+  conclusion,
 };
