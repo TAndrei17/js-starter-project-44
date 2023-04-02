@@ -16,14 +16,14 @@ const stateEven = {
   wrong: 0,
 };
 
-const gameEven = (name) => {
-  const dialogsEven = {
-    answerWrong: '',
-    incorrect: `Let's try again, ${name}!`,
-    correct: 'Correct!',
-    congrats: `Congragulations, ${name}!`,
-  };
+const dialogsEven = {
+  answerWrong: '',
+  incorrect: `Let's try again, ${getName}!`,
+  correct: 'Correct!',
+  congrats: `Congragulations, ${getName}!`,
+};
 
+const gameEven = () => {
   const render = () => {
     let result = '';
     const { answer, rightAnswer } = stateEven;
@@ -55,4 +55,4 @@ const gameEven = (name) => {
   return brainEven();
 };
 
-gameEven(getName);
+gameEven();

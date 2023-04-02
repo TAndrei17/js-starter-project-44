@@ -16,14 +16,14 @@ const state = {
   wrong: 0,
 };
 
-const gameCalc = (name) => {
-  const dialogs = {
-    answerWrong: '',
-    incorrect: `Let's try again, ${name}!`,
-    correct: 'Correct!',
-    congrats: `Congragulations, ${name}!`,
-  };
+const dialogs = {
+  answerWrong: '',
+  incorrect: `Let's try again, ${getName}!`,
+  correct: 'Correct!',
+  congrats: `Congragulations, ${getName}!`,
+};
 
+const gameCalc = () => {
   const render = () => {
     let result = '';
     const {
@@ -56,4 +56,4 @@ const gameCalc = (name) => {
   return brainCalc();
 };
 
-gameCalc(getName);
+gameCalc();

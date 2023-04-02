@@ -16,14 +16,14 @@ const stateGcd = {
   wrong: 0,
 };
 
-const gameGcd = (name) => {
-  const dialogsGcd = {
-    answerWrong: '',
-    incorrect: `Let's try again, ${name}!`,
-    correct: 'Correct!',
-    congrats: `Congragulations, ${name}!`,
-  };
+const dialogsGcd = {
+  answerWrong: '',
+  incorrect: `Let's try again, ${getName}!`,
+  correct: 'Correct!',
+  congrats: `Congragulations, ${getName}!`,
+};
 
+const gameGcd = () => {
   const render = () => {
     let result = '';
     const {
@@ -56,4 +56,4 @@ const gameGcd = (name) => {
   return brainGcd();
 };
 
-gameGcd(getName);
+gameGcd();
