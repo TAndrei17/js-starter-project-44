@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import greeting from '../cli.js';
-import { createProgression, showProgression } from '../games/brain-progression-logic.js';
+import { createProgression, showProgression, createHideIndex } from '../games/brain-progression-logic.js';
 import {
   getAnswer, render, createDialogs, conclusion,
 } from '../index.js';
@@ -23,9 +23,7 @@ const gameProgression = () => {
   const brainProgression = () => {
     const progression = createProgression();
 
-    let hideIndex = 0;
-    const getHideIndex = Math.floor(Math.random() * progression.length);
-    hideIndex = getHideIndex;
+    const hideIndex = createHideIndex(progression);
 
     const hideNumber = progression.map((item, index) => {
       if (index === hideIndex) {

@@ -33,4 +33,11 @@ const showProgression = (array) => {
   console.log(question);
 };
 
-export { createProgression, showProgression };
+const createHideIndex = (array) => {
+  let index = 0;
+  const getIndex = Math.floor(Math.random() * array.length);
+  index = getIndex;
+  return index;
+};
+
+export { createProgression, showProgression, createHideIndex };
