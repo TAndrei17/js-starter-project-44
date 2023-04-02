@@ -2,13 +2,15 @@
 
 import greeting from '../cli.js';
 import { createExpression, showExpression } from '../games/brain-calc-logic.js';
-import { getAnswer, conclusion } from '../index.js';
+import {
+  getAnswer, render, createDialogs, conclusion,
+} from '../index.js';
 
 console.log('Welcome to the Brain Games!');
 const getName = greeting();
 console.log('What is the result of the expression?');
 
-const state = {
+const stateCalc = {
   currentTerm: '',
   rightAnswer: null,
   answer: null,
@@ -16,41 +18,24 @@ const state = {
   wrong: 0,
 };
 
-const dialogs = {
-  answerWrong: '',
-  incorrect: `Let's try again, ${getName}!`,
-  correct: 'Correct!',
-  congrats: `Congragulations, ${getName}!`,
-};
+const dialogsCalc = createDialogs(getName);
 
 const gameCalc = () => {
-  const render = () => {
-    let result = '';
-    const {
-      rightAnswer, answer, right, wrong,
-    } = state;
-    const { correct, answerWrong } = dialogs;
-    result = (answer === rightAnswer) ? correct : answerWrong;
-    console.log(result);
-    state.right = (result === correct) ? state.right += 1 : right;
-    state.wrong = (result === answerWrong) ? state.wrong += 1 : wrong;
-  };
-
   const brainCalc = () => {
     const term = createExpression();
-    state.currentTerm = term;
-    state.rightAnswer = eval(state.currentTerm);
+    stateCalc.currentTerm = term;
+    stateCalc.rightAnswer = eval(stateCalc.currentTerm);
     showExpression(term);
     const answer = getAnswer();
-    state.answer = Number(answer);
-    dialogs.answerWrong = `'${state.answer}' is wrong answer ;(. Correct answer was '${state.rightAnswer}'.`;
-    render();
+    stateCalc.answer = Number(answer);
+    dialogsCalc.answerWrong = `'${stateCalc.answer}' is wrong answer ;(. Correct answer was '${stateCalc.rightAnswer}'.`;
+    render(stateCalc, dialogsCalc);
 
-    if (state.right < 3 && state.wrong === 0) {
+    if (stateCalc.right < 3 && stateCalc.wrong === 0) {
       return brainCalc();
     }
-    const { right, wrong } = state;
-    const { congrats, incorrect } = dialogs;
+    const { right, wrong } = stateCalc;
+    const { congrats, incorrect } = dialogsCalc;
     return conclusion(right, wrong, congrats, incorrect);
   };
   return brainCalc();

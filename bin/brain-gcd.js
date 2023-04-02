@@ -2,40 +2,25 @@
 
 import greeting from '../cli.js';
 import { createTwoNums, showTwoNumbers, getNod } from '../games/brain-gcd-logic.js';
-import { getAnswer, conclusion } from '../index.js';
+import {
+  getAnswer, render, createDialogs, conclusion,
+} from '../index.js';
 
 console.log('Welcome to the Brain Games!');
 const getName = greeting();
 console.log('Find the greatest common divisor of given numbers.');
 
 const stateGcd = {
-  currentTerm: '',
+  currentTerm: '', // difference!
   rightAnswer: null,
   answer: null,
   right: 0,
   wrong: 0,
 };
 
-const dialogsGcd = {
-  answerWrong: '',
-  incorrect: `Let's try again, ${getName}!`,
-  correct: 'Correct!',
-  congrats: `Congragulations, ${getName}!`,
-};
+const dialogsGcd = createDialogs(getName);
 
 const gameGcd = () => {
-  const render = () => {
-    let result = '';
-    const {
-      rightAnswer, answer, right, wrong,
-    } = stateGcd;
-    const { correct, answerWrong } = dialogsGcd;
-    result = (answer === rightAnswer) ? correct : answerWrong;
-    console.log(result);
-    stateGcd.right = (result === correct) ? stateGcd.right += 1 : right;
-    stateGcd.wrong = (result === answerWrong) ? stateGcd.wrong += 1 : wrong;
-  };
-
   const brainGcd = () => {
     const term = createTwoNums();
     stateGcd.currentTerm = term;
@@ -44,7 +29,7 @@ const gameGcd = () => {
     const answer = getAnswer();
     stateGcd.answer = Number(answer);
     dialogsGcd.answerWrong = `'${stateGcd.answer}' is wrong answer ;(. Correct answer was '${stateGcd.rightAnswer}'.`;
-    render();
+    render(stateGcd, dialogsGcd);
 
     if (stateGcd.right < 3 && stateGcd.wrong === 0) {
       return brainGcd();
