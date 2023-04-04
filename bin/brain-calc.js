@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import greeting from '../cli.js';
-import { createExpression, showExpression } from '../games/brain-calc-logic.js';
+import { createExpression, showExpression, calculateExpression } from '../games/brain-calc-logic.js';
 import {
   getAnswer, render, createDialogs, conclusion,
 } from '../index.js';
@@ -24,7 +24,7 @@ const gameCalc = () => {
   const brainCalc = () => {
     const term = createExpression();
     stateCalc.currentTerm = term;
-    stateCalc.rightAnswer = eval(stateCalc.currentTerm);
+    stateCalc.rightAnswer = calculateExpression(stateCalc.currentTerm);
     showExpression(term);
     const answer = getAnswer();
     stateCalc.answer = Number(answer);

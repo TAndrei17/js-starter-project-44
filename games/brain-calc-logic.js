@@ -15,4 +15,27 @@ const showExpression = (text) => {
   console.log(question);
 };
 
-export { createExpression, showExpression };
+const calculateExpression = (text) => {
+  const divideText = text.split(' ');
+  const oper = divideText[1];
+  const numberOne = parseInt(divideText[0], 10);
+  const numberTwo = parseInt(divideText[2], 10);
+
+  let result;
+  switch (oper) {
+    case '+':
+      result = numberOne + numberTwo;
+      break;
+    case '-':
+      result = numberOne - numberTwo;
+      break;
+    case '*':
+      result = numberOne * numberTwo;
+      break;
+    default:
+      console.log('Error. Unknown oprator');
+  }
+  return result;
+};
+
+export { createExpression, showExpression, calculateExpression };
