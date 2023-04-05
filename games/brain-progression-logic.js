@@ -28,7 +28,7 @@ const createProgression = () => {
 };
 
 const showProgression = (array) => {
-  const arrayToString = array.join(', ');
+  const arrayToString = array.join(' ');
   const question = `Question: ${arrayToString}`;
   console.log(question);
 };
