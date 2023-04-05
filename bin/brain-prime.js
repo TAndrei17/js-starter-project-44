@@ -22,7 +22,6 @@ const dialogsPrime = createDialogs(getName);
 const gamePrime = () => {
   console.log('Answer "yes" if given number is prime. Otherwise answer "no"');
   const brainPrime = () => {
-    const { right, wrong } = statePrime;
     const { incorrect, correct, congrats } = dialogsPrime;
     const number = createNumber();
     statePrime.currentNum = number;
@@ -32,8 +31,7 @@ const gamePrime = () => {
     statePrime.answer = answer;
     dialogsPrime.answerWrong = `'${statePrime.answer}' is wrong answer ;(. Correct answer was '${statePrime.rightAnswer}'.`;
     const result = render(statePrime, dialogsPrime);
-    statePrime.right = (result === correct) ? statePrime.right += 1 : right;
-    statePrime.wrong = (result !== correct) ? statePrime.wrong += 1 : wrong;
+    statePrime.right = (result === correct) ? statePrime.right += 1 : statePrime.wrong += 1;
 
     if (statePrime.right < 3 && statePrime.wrong === 0) {
       return brainPrime();

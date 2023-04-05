@@ -8,43 +8,40 @@ import {
 
 const getName = greeting();
 
-const stateProgression = {
+const stateProg = {
   rightAnswer: '',
   answer: '',
   right: 0,
   wrong: 0,
 };
 
-const dialogsProgression = createDialogs(getName);
+const dialogsProg = createDialogs(getName);
 
 const gameProgression = () => {
   console.log('What number is missing in the progression?');
 
   const brainProgression = () => {
-    const { right, wrong } = stateProgression;
-    const { incorrect, correct, congrats } = dialogsProgression;
+    const { incorrect, correct, congrats } = dialogsProg;
     const progression = createProgression();
     const hideIndex = createHideIndex(progression);
     const hideNumber = progression.map((item, index) => {
       if (index === hideIndex) {
-        stateProgression.rightAnswer = String(item);
+        stateProg.rightAnswer = String(item);
         return ('..');
       }
       return item;
     });
 
     showProgression(hideNumber);
-    const playerAnswer = getAnswer();
-    stateProgression.answer = playerAnswer;
-    dialogsProgression.answerWrong = `'${stateProgression.answer}' is wrong answer ;(. Correct answer was '${stateProgression.rightAnswer}'.`;
-    const result = render(stateProgression, dialogsProgression);
-    stateProgression.right = (result === correct) ? stateProgression.right += 1 : right;
-    stateProgression.wrong = (result !== correct) ? stateProgression.wrong += 1 : wrong;
+    stateProg.answer = getAnswer();
+    dialogsProg.answerWrong = `'${stateProg.answer}' is wrong answer ;(. Correct answer was '${stateProg.rightAnswer}'.`;
+    const result = render(stateProg, dialogsProg);
+    stateProg.right = (result === correct) ? stateProg.right += 1 : stateProg.wrong += 1;
 
-    if (stateProgression.right < 3 && stateProgression.wrong === 0) {
+    if (stateProg.right < 3 && stateProg.wrong === 0) {
       return brainProgression();
     }
-    return conclusion(stateProgression.right, stateProgression.wrong, congrats, incorrect);
+    return conclusion(stateProg.right, stateProg.wrong, congrats, incorrect);
   };
   return brainProgression();
 };
