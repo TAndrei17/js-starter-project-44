@@ -6,13 +6,11 @@ import {
   getAnswer, render, createDialogs, conclusion,
 } from '../index.js';
 
-console.log('Welcome to the Brain Games!');
 const getName = greeting();
-console.log('What number is missing in the progression?');
 
 const stateProgression = {
-  rightAnswer: null,
-  answer: null,
+  rightAnswer: '',
+  answer: '',
   right: 0,
   wrong: 0,
 };
@@ -20,14 +18,14 @@ const stateProgression = {
 const dialogsProgression = createDialogs(getName);
 
 const gameProgression = () => {
+  console.log('What number is missing in the progression?');
+
   const brainProgression = () => {
     const progression = createProgression();
-
     const hideIndex = createHideIndex(progression);
-
     const hideNumber = progression.map((item, index) => {
       if (index === hideIndex) {
-        stateProgression.rightAnswer = item;
+        stateProgression.rightAnswer = String(item);
         return ('..');
       }
       return item;
@@ -35,7 +33,7 @@ const gameProgression = () => {
 
     showProgression(hideNumber);
     const answer = getAnswer();
-    stateProgression.answer = Number(answer);
+    stateProgression.answer = answer;
     dialogsProgression.answerWrong = `'${stateProgression.answer}' is wrong answer ;(. Correct answer was '${stateProgression.rightAnswer}'.`;
     render(stateProgression, dialogsProgression);
 

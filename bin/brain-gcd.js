@@ -6,14 +6,12 @@ import {
   getAnswer, render, createDialogs, conclusion,
 } from '../index.js';
 
-console.log('Welcome to the Brain Games!');
 const getName = greeting();
-console.log('Find the greatest common divisor of given numbers.');
 
 const stateGcd = {
-  currentTerm: '', // difference!
-  rightAnswer: null,
-  answer: null,
+  currentTerm: '',
+  rightAnswer: '',
+  answer: '',
   right: 0,
   wrong: 0,
 };
@@ -21,13 +19,14 @@ const stateGcd = {
 const dialogsGcd = createDialogs(getName);
 
 const gameGcd = () => {
+  console.log('Find the greatest common divisor of given numbers.');
   const brainGcd = () => {
     const term = createTwoNums();
     stateGcd.currentTerm = term;
-    stateGcd.rightAnswer = getNod(term);
+    stateGcd.rightAnswer = String(getNod(term));
     showTwoNumbers(term);
     const answer = getAnswer();
-    stateGcd.answer = Number(answer);
+    stateGcd.answer = answer;
     dialogsGcd.answerWrong = `'${stateGcd.answer}' is wrong answer ;(. Correct answer was '${stateGcd.rightAnswer}'.`;
     render(stateGcd, dialogsGcd);
 

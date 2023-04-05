@@ -6,9 +6,7 @@ import {
 } from '../index.js';
 import showNumber from '../games/brain-even-logic.js';
 
-console.log('Welcome to the Brain Games!');
 const getName = greeting();
-console.log('Answer "yes" if the number is even, otherwise answer "no".');
 
 const stateEven = {
   currentNum: null,
@@ -21,6 +19,7 @@ const stateEven = {
 const dialogsEven = createDialogs(getName);
 
 const gameEven = () => {
+  console.log('Answer "yes" if the number is even, otherwise answer "no".');
   const brainEven = () => {
     const number = createNumber();
     stateEven.currentNum = number;

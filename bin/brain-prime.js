@@ -7,9 +7,7 @@ import {
 import showNumber from '../games/brain-even-logic.js';
 import isPrime from '../games/brain-prime-logic.js';
 
-console.log('Welcome to the Brain Games!');
 const getName = greeting();
-console.log('Answer "yes" if given number is prime. Otherwise answer "no"');
 
 const statePrime = {
   currentNum: null,
@@ -22,6 +20,7 @@ const statePrime = {
 const dialogsPrime = createDialogs(getName);
 
 const gamePrime = () => {
+  console.log('Answer "yes" if given number is prime. Otherwise answer "no"');
   const brainPrime = () => {
     const number = createNumber();
     statePrime.currentNum = number;

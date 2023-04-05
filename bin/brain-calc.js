@@ -6,14 +6,12 @@ import {
   getAnswer, render, createDialogs, conclusion,
 } from '../index.js';
 
-console.log('Welcome to the Brain Games!');
 const getName = greeting();
-console.log('What is the result of the expression?');
 
 const stateCalc = {
   currentTerm: '',
-  rightAnswer: null,
-  answer: null,
+  rightAnswer: '',
+  answer: '',
   right: 0,
   wrong: 0,
 };
@@ -21,13 +19,14 @@ const stateCalc = {
 const dialogsCalc = createDialogs(getName);
 
 const gameCalc = () => {
+  console.log('What is the result of the expression?');
   const brainCalc = () => {
     const term = createExpression();
     stateCalc.currentTerm = term;
-    stateCalc.rightAnswer = calculateExpression(stateCalc.currentTerm);
+    stateCalc.rightAnswer = String(calculateExpression(stateCalc.currentTerm));
     showExpression(term);
     const answer = getAnswer();
-    stateCalc.answer = Number(answer);
+    stateCalc.answer = answer;
     dialogsCalc.answerWrong = `'${stateCalc.answer}' is wrong answer ;(. Correct answer was '${stateCalc.rightAnswer}'.`;
     render(stateCalc, dialogsCalc);
 
