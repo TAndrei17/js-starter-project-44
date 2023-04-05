@@ -21,6 +21,8 @@ const dialogsGcd = createDialogs(getName);
 const gameGcd = () => {
   console.log('Find the greatest common divisor of given numbers.');
   const brainGcd = () => {
+    const { right, wrong } = stateGcd;
+    const { incorrect, correct, congrats } = dialogsGcd;
     const term = createTwoNums();
     stateGcd.currentTerm = term;
     stateGcd.rightAnswer = String(getNod(term));
@@ -28,14 +30,14 @@ const gameGcd = () => {
     const answer = getAnswer();
     stateGcd.answer = answer;
     dialogsGcd.answerWrong = `'${stateGcd.answer}' is wrong answer ;(. Correct answer was '${stateGcd.rightAnswer}'.`;
-    render(stateGcd, dialogsGcd);
+    const result = render(stateGcd, dialogsGcd);
+    stateGcd.right = (result === correct) ? stateGcd.right += 1 : right;
+    stateGcd.wrong = (result !== correct) ? stateGcd.wrong += 1 : wrong;
 
     if (stateGcd.right < 3 && stateGcd.wrong === 0) {
       return brainGcd();
     }
-    const { right, wrong } = stateGcd;
-    const { congrats, incorrect } = dialogsGcd;
-    return conclusion(right, wrong, congrats, incorrect);
+    return conclusion(stateGcd.right, stateGcd.wrong, congrats, incorrect);
   };
   return brainGcd();
 };

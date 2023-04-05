@@ -21,6 +21,8 @@ const dialogsCalc = createDialogs(getName);
 const gameCalc = () => {
   console.log('What is the result of the expression?');
   const brainCalc = () => {
+    const { right, wrong } = stateCalc;
+    const { incorrect, correct, congrats } = dialogsCalc;
     const term = createExpression();
     stateCalc.currentTerm = term;
     stateCalc.rightAnswer = String(calculateExpression(stateCalc.currentTerm));
@@ -28,14 +30,14 @@ const gameCalc = () => {
     const answer = getAnswer();
     stateCalc.answer = answer;
     dialogsCalc.answerWrong = `'${stateCalc.answer}' is wrong answer ;(. Correct answer was '${stateCalc.rightAnswer}'.`;
-    render(stateCalc, dialogsCalc);
+    const result = render(stateCalc, dialogsCalc);
+    stateCalc.right = (result === correct) ? stateCalc.right += 1 : right;
+    stateCalc.wrong = (result !== correct) ? stateCalc.wrong += 1 : wrong;
 
     if (stateCalc.right < 3 && stateCalc.wrong === 0) {
       return brainCalc();
     }
-    const { right, wrong } = stateCalc;
-    const { congrats, incorrect } = dialogsCalc;
-    return conclusion(right, wrong, congrats, incorrect);
+    return conclusion(stateCalc.right, stateCalc.wrong, congrats, incorrect);
   };
   return brainCalc();
 };

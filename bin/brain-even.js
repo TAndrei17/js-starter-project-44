@@ -21,6 +21,8 @@ const dialogsEven = createDialogs(getName);
 const gameEven = () => {
   console.log('Answer "yes" if the number is even, otherwise answer "no".');
   const brainEven = () => {
+    const { right, wrong } = stateEven;
+    const { incorrect, correct, congrats } = dialogsEven;
     const number = createNumber();
     stateEven.currentNum = number;
     stateEven.rightAnswer = (number % 2 === 0) ? 'yes' : 'no';
@@ -28,14 +30,14 @@ const gameEven = () => {
     const answer = getAnswer();
     stateEven.answer = answer;
     dialogsEven.answerWrong = `'${stateEven.answer}' is wrong answer ;(. Correct answer was '${stateEven.rightAnswer}'.`;
-    render(stateEven, dialogsEven);
+    const result = render(stateEven, dialogsEven);
+    stateEven.right = (result === correct) ? stateEven.right += 1 : right;
+    stateEven.wrong = (result !== correct) ? stateEven.wrong += 1 : wrong;
 
-    const { right, wrong } = stateEven;
-    const { congrats, incorrect } = dialogsEven;
-    if (right < 3 && wrong === 0) {
+    if (stateEven.right < 3 && stateEven.wrong === 0) {
       return brainEven();
     }
-    return conclusion(right, wrong, congrats, incorrect);
+    return conclusion(stateEven.right, stateEven.wrong, congrats, incorrect);
   };
   return brainEven();
 };

@@ -21,6 +21,8 @@ const gameProgression = () => {
   console.log('What number is missing in the progression?');
 
   const brainProgression = () => {
+    const { right, wrong } = stateProgression;
+    const { incorrect, correct, congrats } = dialogsProgression;
     const progression = createProgression();
     const hideIndex = createHideIndex(progression);
     const hideNumber = progression.map((item, index) => {
@@ -32,17 +34,17 @@ const gameProgression = () => {
     });
 
     showProgression(hideNumber);
-    const answer = getAnswer();
-    stateProgression.answer = answer;
+    const playerAnswer = getAnswer();
+    stateProgression.answer = playerAnswer;
     dialogsProgression.answerWrong = `'${stateProgression.answer}' is wrong answer ;(. Correct answer was '${stateProgression.rightAnswer}'.`;
-    render(stateProgression, dialogsProgression);
+    const result = render(stateProgression, dialogsProgression);
+    stateProgression.right = (result === correct) ? stateProgression.right += 1 : right;
+    stateProgression.wrong = (result !== correct) ? stateProgression.wrong += 1 : wrong;
 
     if (stateProgression.right < 3 && stateProgression.wrong === 0) {
       return brainProgression();
     }
-    const { right, wrong } = stateProgression;
-    const { congrats, incorrect } = dialogsProgression;
-    return conclusion(right, wrong, congrats, incorrect);
+    return conclusion(stateProgression.right, stateProgression.wrong, congrats, incorrect);
   };
   return brainProgression();
 };
