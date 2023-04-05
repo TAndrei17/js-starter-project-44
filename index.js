@@ -16,7 +16,7 @@ const createDialogs = (name) => {
     answerWrong: '',
     incorrect: `Let's try again, ${name}!`,
     correct: 'Correct!',
-    congrats: `Congragulations, ${name}!`,
+    congrats: `Congratulations, ${name}!`,
   };
   return dialogs;
 };
