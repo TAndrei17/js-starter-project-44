@@ -8,7 +8,7 @@
 
 'Brain-games' imitates a publish in npm package, but it is not there (i used `npm publish --dry-run` just for imitate a publish). You can use the command `git clone` for download it. Then use the command `make install` (or command `npm ci`) for download all dependencias and command `npm link` from project's root directory for installing of the package in your system.
 
-##Installation
+## Installation ##
 
 ```sh
 git clone git@github.com:TAndrei17/js-starter-project-44.git
