@@ -1,13 +1,13 @@
 # Brain-games
 
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/TAndrei17/js-starter-project-44/hexlet-check.yml?label=hexlet-check)
-![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/TAndrei17/js-starter-project-44)
+![![Maintainability](https://api.codeclimate.com/v1/badges/d230cbd47d78747795c2/maintainability)](https://codeclimate.com/github/TAndrei17/js-starter-project-44/maintainability)
 
 **Brain-games** is Andrei Trunkin's training project. It contains 5 simple command line games (programs).
 
 **Brain-games** imitates a publish in npm package, but it is not there (i used `npm publish --dry-run` just for imitate a publish). You can use the command `git clone` for download it. Then use the command `make install` (or command `npm ci`) for download all dependencias and command `npm link` from project's root directory for installing of the package in your system.
 
-## Installation ##
+## Installation
 
 ```sh
 git clone git@github.com:TAndrei17/js-starter-project-44.git
@@ -15,7 +15,8 @@ make install
 npm link
 ```
 
-## Execution ##
+## Execution
+
 Run following commands for starting the game what you want:
 
 - `brain-even`
@@ -24,7 +25,8 @@ Run following commands for starting the game what you want:
 - `brain-progression`
 - `brain-prime`
 
-## Examples ##
+## Examples
+
 You can find example of every game in attached video.
 
 [![Brain-Even](https://asciinema.org/a/ki5bTSguoIu4gg6iRe8xJm2Jx.svg)](https://asciinema.org/a/ki5bTSguoIu4gg6iRe8xJm2Jx)
