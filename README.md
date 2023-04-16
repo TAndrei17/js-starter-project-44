@@ -1,7 +1,7 @@
 # Brain-games
 
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/TAndrei17/js-starter-project-44/hexlet-check.yml?label=hexlet-check)
-![![Maintainability](https://api.codeclimate.com/v1/badges/d230cbd47d78747795c2/maintainability)](https://codeclimate.com/github/TAndrei17/js-starter-project-44/maintainability)
+![Maintainability](https://api.codeclimate.com/v1/badges/d230cbd47d78747795c2/maintainability)](https://codeclimate.com/github/TAndrei17/js-starter-project-44/maintainability)
 
 **Brain-games** is Andrei Trunkin's training project. It contains 5 simple command line games (programs).
 
